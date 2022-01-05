@@ -6,7 +6,8 @@ Exponential smoothening forecasting methods are similar to Box-Jenkins ARIMA mod
 Collectively, the methods of Box-Jenkins ARIMA as well Exponential smoothening are sometimes referred to as ETS models, referring to the explicit modeling of Error, Trend and Seasonality.
 
 There are three types of exponential smoothening, let us look at two of them.
-[!Exponential Smoothening]<img width="680" alt="image" src="https://user-images.githubusercontent.com/84874044/148251763-f4d94bc9-aa36-4d09-a293-9115d09b63dd.png">
+![image](https://user-images.githubusercontent.com/84874044/148252573-96904ab7-2b4c-4f3b-9b29-09e7f31d4a05.png)
+
 
 
 ## Double Exponential Smoothing
