@@ -10,7 +10,7 @@
   - Simple Moving Average (SMA)
   - Weighted Moving Average (WMA)
   - Exponential Moving Average (EMA)
-![ma](Assets/moving_average/ma1.png )
+![ma](assets/moving_average/ma1.png )
 ---
 
 # Simple Moving Average (SMA) 
@@ -28,19 +28,19 @@ generalized picture.
 
 - Math-wise, simple moving averages are dead simple to implement
 
-![image](Assets/moving_average/sma1.png)
+![image](assets/moving_average/sma1.png)
 
 For example, 
 
-![image](Assets/moving_average/sma2.png)
+![image](assets/moving_average/sma2.png)
 
 - We take a dataset of Airline passengers over a period of time which looks like this: 
 
-![image](Assets/moving_average/sma3.png)
+![image](assets/moving_average/sma3.png)
 
 - Applying SMA, on existing dataset we notice that for different values of MA we get slightly different graphs.
 
-![image](Assets/moving_average/sma4.png)
+![image](assets/moving_average/sma4.png)
 
 ## Downside
 
@@ -54,10 +54,10 @@ For example,
 
 - An exponential moving average (EMA) is a type of moving average (MA) that places a greater weight and significance on the most recent data points. The exponential moving average is also referred to as the exponentially weighted moving average. An exponentially weighted moving average reacts more significantly to recent price changes than a simple moving average (SMA), which applies an equal weight to all observations in the period. 
 
-![formula](Assets/moving_average/ema1.png)
+![formula](assets/moving_average/ema1.png)
 - That gives the most recent observation more weight. If the smoothing factor is increased, more recent observations have more influence on the EMA. 
 
-![image](Assets/moving_average/ema2.png)
+![image](assets/moving_average/ema2.png)
 
 - The biggest advantage of EMA is that it keeps the trends intact compared to SMA which smoothens all the edges out. 
 
