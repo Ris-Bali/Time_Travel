@@ -126,6 +126,150 @@ As written earlier, ARIMA is a generalized form of ARMA.
 
 ARIMA models are generally of two major types
 1.  Non-seasonal ARIMA models
-2.  Seasonal ARIMA models
    
+The ARIMA forecasting equation for a stationary time series is a linear (i.e., regression-type) equation in which the predictors consist of lags of the dependent variable and/or lags of the forecast errors.  That is:
 
+Predicted value of Y = a constant and/or a weighted sum of one or more recent values of Y and/or a weighted sum of one or more recent values of the errors.
+
+<p><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;">If d=0: </span><span style="font-size:14.0pt"><span style="mso-spacerun:yes">&nbsp;</span>y<sub>t</sub><span style="mso-spacerun:yes">&nbsp; </span>=<span style="mso-spacerun:yes">&nbsp;
+</span>Y<sub>t</sub><o:p></o:p></span></p>
+
+<p><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;">If d=1: </span><span style="font-size:14.0pt"><span style="mso-spacerun:yes">&nbsp;</span>y<sub>t</sub><span style="mso-spacerun:yes">&nbsp; </span>=<span style="mso-spacerun:yes">&nbsp;
+</span>Y<sub>t</sub> </span><span style="font-size:14.0pt;font-family:&quot;Courier New&quot;">-
+</span><span style="font-size:14.0pt">Y<sub>t-1</sub><o:p></o:p></span></p>
+
+In terms of y, the general forecasting equation is:
+
+
+<p><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+&quot;Times New Roman&quot;">If d=1: </span><span style="font-size:14.0pt"><span style="mso-spacerun:yes">&nbsp;</span>y<sub>t</sub><span style="mso-spacerun:yes">&nbsp; </span>=<span style="mso-spacerun:yes">&nbsp;
+</span>Y<sub>t</sub> </span><span style="font-size:14.0pt;font-family:&quot;Courier New&quot;">-
+</span><span style="font-size:14.0pt">Y<sub>t-1</sub><o:p></o:p></span></p>
+
+To identify the appropriate ARIMA model for Y, you begin by determining the order of differencing (d) needing to stationarize the series and remove the gross features of seasonality, perhaps in conjunction with a variance-stabilizing transformation such as logging or deflating.  
+
+Cases of ARIMA 
+
+<p><a name="arima110"></a><a name="arima100"></a><b><span style="font-size:10.0pt;
+font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;">ARIMA(1,0,0) = first-order autoregressive
+model: </span></b><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;
+mso-bidi-font-weight:bold"><span style="mso-spacerun:yes">&nbsp; </span><o:p></o:p></span></p>
+if the series is stationary and autocorrelated,
+perhaps it can be predicted as a multiple of its own previous value, plus a constant
+
+The forecasting equation in this case is 
+<p><span style="font-size:14.0pt">Ŷ<sub>t</sub><span style="mso-spacerun:yes">&nbsp; </span>=<span style="mso-spacerun:yes">&nbsp;
+</span>μ<span style="mso-spacerun:yes">&nbsp; </span>+<span style="mso-spacerun:yes">&nbsp; </span>ϕ<sub>1</sub>Y<sub>t-1</sub></span><span style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+
+which is Y regressed on itself lagged by one period. This is an “ARIMA(1,0,0)+constant” model.  If the mean of Y is zero, then the constant term would not be included.
+
+<b><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;">ARIMA(0,1,0)
+= random walk: </span> </b>
+
+If the series Y is not stationary, the simplest possible model for it is a random walk model, which can be considered as a limiting case of an AR(1) model in which the autoregressive coefficient is equal to 1, i.e., a series with infinitely slow mean reversion.  The prediction equation for this model can be written as:
+
+<p><span style="font-size:14.0pt">Ŷ<sub>t</sub><span style="mso-spacerun:yes">&nbsp; </span>=<span style="mso-spacerun:yes">&nbsp;&nbsp; </span>μ + Y<sub>t-1</sub></span><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+
+The random-walk-without-drift model would be an ARIMA(0,1,0) model without constant
+
+<b><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;">ARIMA(1,1,0)
+= differenced first-order autoregressive model: </span></b>
+
+If the errors of a random walk model are autocorrelated, perhaps the problem can be fixed by adding one lag of the dependent variable to the prediction equation--i.e., by regressing the first difference of Y on itself lagged by one period. This would yield the following prediction equation:
+
+<p><span style="font-size:14.0pt">Ŷ<sub>t</sub><span style="mso-spacerun:yes">&nbsp; </span>=<span style="mso-spacerun:yes">&nbsp;
+</span>μ<span style="mso-spacerun:yes">&nbsp; </span>+ Y<sub>t-1</sub><span style="mso-spacerun:yes">&nbsp; </span>+<span style="mso-spacerun:yes">&nbsp;
+</span>ϕ<sub>1</sub> (Y<sub>t-1 </sub></span><span style="font-size:14.0pt;
+font-family:&quot;Courier New&quot;">-</span><span style="font-size:14.0pt"> Y<sub>t-2</sub>)</span><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+
+This is a first-order autoregressive model with one order of nonseasonal differencing and a constant term--i.e., an ARIMA(1,1,0) model.
+
+
+<b><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;">ARIMA(0,1,1)
+without constant = simple exponential smoothing:</span></b>
+
+The simple exponential smoothing model uses an exponentially weighted moving average of past values to achieve this effect. The prediction equation for the simple exponential smoothing model can be written in a number of mathematically equivalent forms, one of which is the so-called “error correction” form, in which the previous forecast is adjusted in the direction of the error it made:
+
+<p><span lang="FR-CA" style="font-size:14.0pt;mso-ansi-language:FR-CA">Ŷ<sub>t</sub><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>=<span style="mso-spacerun:yes">&nbsp; </span>Y</span><sub><span lang="FR-CA" style="mso-ansi-language:FR-CA">t-1</span></sub><sub><span lang="FR-CA" style="font-size:14.0pt;mso-ansi-language:FR-CA"> </span></sub><span lang="FR-CA" style="font-size:14.0pt;mso-ansi-language:FR-CA"><span style="mso-spacerun:yes">&nbsp;</span></span><span lang="FR-CA" style="font-size:
+14.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR-CA">-</span><span lang="FR-CA" style="font-size:14.0pt;mso-ansi-language:FR-CA"> (1</span><span lang="FR-CA" style="font-size:14.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:
+FR-CA">-</span><span lang="FR-CA" style="font-size:14.0pt;mso-ansi-language:FR-CA">α)e</span><sub><span lang="FR-CA" style="mso-ansi-language:FR-CA">t-1</span></sub><span lang="FR-CA" style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-ansi-language:
+FR-CA"><o:p></o:p></span></p>
+
+<p><span lang="FR-CA" style="font-size:14.0pt;mso-ansi-language:FR-CA"><span style="mso-spacerun:yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>=<span style="mso-spacerun:yes">&nbsp; </span>Y</span><sub><span lang="FR-CA" style="mso-ansi-language:FR-CA">t-1</span></sub><sub><span lang="FR-CA" style="font-size:14.0pt;mso-ansi-language:FR-CA"> </span></sub><span lang="FR-CA" style="font-size:14.0pt;mso-ansi-language:FR-CA"><span style="mso-spacerun:yes">&nbsp;</span></span><span lang="FR-CA" style="font-size:
+14.0pt;font-family:&quot;Courier New&quot;;mso-ansi-language:FR-CA">-</span><span lang="FR-CA" style="font-size:14.0pt;mso-ansi-language:FR-CA"> </span>θ<sub><span lang="FR-CA" style="mso-ansi-language:FR-CA">1</span></sub><span lang="FR-CA" style="font-size:14.0pt;mso-ansi-language:FR-CA">e</span><sub><span lang="FR-CA" style="mso-ansi-language:FR-CA">t-1</span></sub><span lang="FR-CA" style="font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;mso-ansi-language:FR-CA"><o:p></o:p></span></p>
+
+which is an ARIMA(0,1,1)-without-constant forecasting equation with θ<sub>1</sub> = 1-α.
+
+This means that you can fit a simple exponential smoothing by specifying it as an ARIMA(0,1,1) model without constant, and the estimated MA(1) coefficient corresponds to 1-minus-alpha in the SES formula.
+
+> <b>SES FORMULA</b><br>
+> The simple moving average model described above has the undesirable property that it treats the last k observations equally and completely ignores all preceding observations. Intuitively, past data should be discounted in a more gradual fashion--for example, the most recent observation should get a little more weight than 2nd most recent, and the 2nd most recent should get a little more weight than the 3rd most recent, and so on. The simple exponential smoothing (SES) model accomplishes this.
+> 
+> Let α denote a "smoothing constant" (a number between 0 and 1).  One way to write the model is to define a series L that represents the current level (i.e., local mean value) of the series as estimated from data up to the present.   The value of L at time t is computed recursively from its own previous value like this:
+ <p style="margin:0in;margin-bottom:.0001pt"><span style="font-size:14.0pt;
+mso-bidi-font-size:12.0pt">L<sub>t</sub><span style="mso-spacerun:yes">&nbsp;
+</span>=<span style="mso-spacerun:yes">&nbsp; </span>αY<sub>t</sub><span style="mso-spacerun:yes">&nbsp; </span>+<span style="mso-spacerun:yes">&nbsp;
+</span>(1</span><span style="font-size:14.0pt;mso-bidi-font-size:12.0pt;
+font-family:Symbol;mso-ascii-font-family:&quot;Times New Roman&quot;;mso-hansi-font-family:
+&quot;Times New Roman&quot;;mso-char-type:symbol;mso-symbol-font-family:Symbol"><span style="mso-char-type:symbol;mso-symbol-font-family:Symbol">-</span></span><span style="font-size:14.0pt;mso-bidi-font-size:12.0pt">α)<span style="mso-spacerun:yes">&nbsp; </span>L<sub>t</sub></span><sub>-1<o:p></o:p></sub></p>
+
+>Thus, the current smoothed value is an interpolation between the previous smoothed value and the current observation, where α controls the closeness of the interpolated value to the most recent observation. The forecast for the next period is simply the current smoothed value.
+
+<b><span style="font-size:10.0pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;">ARIMA(0,1,1)
+with constant = simple exponential smoothing with growth:</span></b>
+ By implementing the SES model as an ARIMA model, you actually gain some flexibility.
+ The ARIMA(0,1,1) model with constant has the prediction equation:
+
+ <p><span style="font-size:14.0pt">Ŷ<sub>t</sub><span style="mso-spacerun:yes">&nbsp;&nbsp; </span>=<span style="mso-spacerun:yes">&nbsp; </span>μ<span style="mso-spacerun:yes">&nbsp; </span>+ Y</span><sub>t-1</sub><sub><span style="font-size:14.0pt"> </span></sub><span style="font-size:14.0pt"><span style="mso-spacerun:yes">&nbsp;</span></span><span style="font-size:14.0pt;
+font-family:&quot;Courier New&quot;">-</span><span style="font-size:14.0pt"> </span>θ<sub>1</sub><span style="font-size:14.0pt">e</span><sub>t-1</sub></p>
+
+
+2.  #### Seasonal ARIMA models
+   
+Seasonal Autoregressive Integrated Moving Average, SARIMA or Seasonal ARIMA, is an extension of ARIMA that explicitly supports univariate time series data with a seasonal component.
+
+It adds three new hyperparameters to specify the autoregression (AR), differencing (I) and moving average (MA) for the seasonal component of the series, as well as an additional parameter for the period of the seasonality.
+
+A seasonal ARIMA model is formed by including additional seasonal terms in the ARIMA models we have seen so far. It is written as follows:
+
+<p align="center"> 
+
+ARIMA (p , d , q) (P , D , Q)<sub>m</sub>
+</p>
+
+where m = number of observations per year.
+
+p = Trend autoregression order.
+
+d = Trend difference order.
+
+q = Trend moving average order.
+
+P = Seasonal autoregressive order.
+
+D = Seasonal difference order.
+
+Q = Seasonal moving average order.
+
+The seasonal part of the model consists of terms that are similar to the non-seasonal components of the model, but involve backshifts of the seasonal period. 
+For example, an ARIMA(1,1,1)(1,1,1) <sub>4</sub> model (without a constant) is for quarterly data(m=4), and can be written as :
+
+![img7](images/equation4.png)
+
+##### ACF and PACF in SARIMA
+
+The seasonal part of an AR or MA model will be seen in the seasonal lags of the PACF and ACF.
+
+For Example
+
+ARIMA (0,0,1)(0,0,1)<sub>10</sub>
+
+will show
+
+* a spike at lag 10 in the ACF but no other significant spikes
+* exponential decay in seasonal lags of lag 10
+  
+
+The SARIMA time series forecasting method is supported in Python via the Statsmodels library.
