@@ -10,7 +10,7 @@ Having understood what exactly a Time Series is and how it should be evaluated, 
 
 - **[Moving Average](https://github.com/Ris-Bali/Time_Travel/blob/himanshu/moving_average.md)**
 
-- **[Exponential Smoothening](https://github.com/Ris-Bali/Time_Travel/blob/sarrah/smoothening.md)**
+- **[Exponential Smoothening](https://github.com/Ris-Bali/Time_Travel/tree/sarrah)**
 
 - **[ARIMA](https://github.com/Ris-Bali/Time_Travel/blob/aditya/Resources/Arima.md)**
 
